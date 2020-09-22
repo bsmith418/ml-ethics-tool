@@ -1,0 +1,17 @@
+<div id="toContributeInfo">
+  <p><b>ML Ethics Tool</b> is free and open source.</p>
+  <p>We collect no data beyond your submissions.</p>
+  <p>To edit or contribute new interventions, please sign in.</p>
+</div>
+
+<div id="loginButtonsWrapper">
+  <!-- achieving color=yourButtonStyle requires a .mat-yourButtonStyle scss declaration  -->
+  <button mat-raised-button color="githubBlack" (click)="loginGithub()">
+    <mat-icon svgIcon="github" class="buttonIcon"></mat-icon>
+    Sign in with GitHub
+  </button>
+  <button mat-raised-button (click)="loginGoogle()">
+    <mat-icon svgIcon="google" class="buttonIcon"></mat-icon>
+    Sign in with Google
+  </button>
+</div>

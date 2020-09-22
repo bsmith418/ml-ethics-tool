@@ -1,0 +1,19 @@
+@import '../../app-vars';
+@import '~@angular/material/theming';
+
+.mat-chip.mat-normalChip{
+  @include mat-elevation(1);
+  background-color: $green-ish;
+  color: $white-ish;
+}
+
+.mat-chip.mat-selectedChip{
+  @include mat-elevation(3);
+  background-color: $myWarn;
+  user-focus: none;
+  color: $white-ish;
+}
+
+.featureChip mat-icon{
+  padding-right: .25em;
+}

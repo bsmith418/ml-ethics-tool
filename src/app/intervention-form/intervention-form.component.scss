@@ -1,0 +1,44 @@
+//:host{
+//  display: block;
+//  background: purple;
+//}
+@import '../../app-vars';
+@import '~@angular/material/theming';
+//@include mat-core();
+
+
+
+.fullWidthInput{
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.extendibleList{
+  //list-style-type: none;
+  //margin-top: 4px;
+  padding-left: 2em;
+  box-sizing: border-box;
+}
+
+.checkboxList{
+  padding-left: 0em;
+  box-sizing: border-box;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.checkboxWrapper{
+  padding: .5em;
+  border-radius: 5px;
+  //border: solid #AAA;
+  @include mat-elevation(1);
+}
+
+
+.checkboxText{
+  //border: solid #000;
+  white-space: normal;
+  //color:green;
+}

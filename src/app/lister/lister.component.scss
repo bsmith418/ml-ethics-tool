@@ -1,0 +1,67 @@
+
+@import '../../app-vars';
+
+// display all intervention cards in a flexbox
+:host{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  //background-color: red;
+  //gap: 1em;
+}
+
+#logout{
+  margin-top: 4px;
+  width: 100%;
+  max-width: $app-indented-width;
+  box-sizing: border-box;
+}
+
+#cardsWrapper{
+  //background-color: red;
+  width: 100%;
+  max-width: $app-indented-width;
+  flex: 1 0 auto;
+}
+
+#noResultsWrapper{
+  //background-color: green;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+$results-margin: 200px;
+
+#noResultsText{
+  background-color: $white-ish;
+  padding: 1em;
+  border-radius: 10px;
+  margin-top: $results-margin;
+}
+
+#spinnerWrapper{
+  position: fixed;
+  z-index: 99;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,.5);
+}
+#spinner{
+  //margin-top: $results-margin;
+  //background-color: red;
+}

@@ -1,0 +1,41 @@
+rules_version = '2';
+
+// collections specified in interventions.service.ts:
+// publicStrategyCollectionName = 'liveStrategies';
+// newStrategiesName = 'newStrategies';
+// editStrategiesName = 'editStrategies';
+// deleteStrategiesCollectionName = 'deleteStrategies';
+
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+  	function isAdmin(){
+            return
+              request.auth != null
+              &&
+              request.auth.uid in
+              	get(/databases/$(database)/documents/admin/adminSettings).data.moderatorUIDs;
+    }
+
+  	// anyone can read the live strategies
+    match /liveStrategies/{document=**}{
+			allow read: if true;
+    }
+    // you can suggest changes if you are logged in
+    match /newStrategies/{document=**}{
+			allow create: if request.auth != null;
+    }
+    match /editStrategies/{document=**}{
+			allow create: if request.auth != null;
+    }
+    match /deleteStrategies/{document=**}{
+			allow create: if request.auth != null;
+    }
+
+    // you can do any darn thing if you're an admin
+    match /{document=**} {
+      allow read, write: if  isAdmin();
+    }
+  }
+}

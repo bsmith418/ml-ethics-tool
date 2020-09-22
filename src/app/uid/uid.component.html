@@ -1,0 +1,16 @@
+
+<span id="textWrapper">
+  <div *ngIf="(auth.isLoggedIn$ | async) == null">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="auth.isLoggedIn$ | async">
+    <p>Your UID is:</p>
+    <p>{{this.auth.uid$ | async}}</p>
+  </div>
+
+  <div *ngIf="(auth.isLoggedIn$ | async) == false">
+    <p>Please return to the main page and login (by attempting to edit or contribute a new Strategy) to get your UID.</p>
+  </div>
+</span>
+

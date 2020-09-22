@@ -1,0 +1,40 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import '~src/app-vars';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $backdrop;
+}
+
+
+// given mat-white A700 is applied to the background of a component,
+// the A700 contrast value will be the color of the text
+$mat-white: ( 100: #FFF, 200: #FFF, 300: #FFF, 400: #FFF, 500: #FFF, 600: #FFF, 700: #FFF,
+  800: #FFF, 900: #FFF, A100: #FFF, A200: #FFF, A400: #FFF, A700: #FFF,
+  contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity,
+    300: $black-87-opacity, 400: $black-87-opacity,
+    500: white, 600: white, 700: white, 800: white, 900: white,
+    A100: $black-87-opacity, A200: $black-87-opacity,
+    A400: white, A700: black, ) );
+
+
+//-------------------------------------------------------------------------------------------------------
+// DEFINING THE BASE THEMING
+//-------------------------------------------------------------------------------------------------------
+// this will appear in various angular material components
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-white, A700);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+$dark-theme: mat-dark-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+
+
+//$primary: mat-palette($mat-red);
+//$accent: mat-palette($mat-red);
+//$warn: mat-palette($mat-red);
+//$theme: mat-light-theme($primary, $accent, $warn);
+//$dark-theme: mat-dark-theme($primary, $accent, $warn);
+//@include angular-material-theme($theme);

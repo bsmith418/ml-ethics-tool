@@ -1,0 +1,70 @@
+@import '../../app-vars';
+
+.interventionCard {
+  max-width: $app-indented-width;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $white-ish;
+  padding-top: 0;
+  margin-bottom: 1em;
+}
+
+.cardContent, .cardActions{
+  //padding-left: 1.5em;
+  box-sizing: border-box;
+}
+
+.matTabContent{
+  box-sizing: border-box;
+  padding-left: 1em;
+  padding-top: 1em;
+  //width: 100%;
+  overflow: hidden;
+  //background-color: green;
+}
+
+.strategyTitle{
+  //color: pink;
+  margin-bottom: .25em;
+}
+
+.datum label{
+  display: block;
+  color:#aaa;
+  font-weight: bold;
+  padding-bottom: .2em;
+  box-sizing: border-box;
+}
+
+.simpleList{
+  margin-top:0;
+  padding-left: 2em;
+  //background-color: red;
+}
+
+.strategyPrimaryLinksWrapper a{
+  color: #000;
+}
+
+.cardActions{
+  padding-top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  //background-color: red;
+  //text-align: right;
+}
+
+.ethicalChip mat-icon{
+  padding-right: .25em;
+}
+
+.mat-chip.mat-greenChip{
+  background-color: $green-ish;
+  color:white;
+}
+
+// disable focus behavior
+.mat-standard-chip:focus::after{
+  opacity: 0;
+}

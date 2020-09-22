@@ -1,0 +1,56 @@
+<div id="viewportWrapper" [class.is-mobile]="mobileQuery.matches">
+
+  <mat-toolbar color="headerfooter" id="toolbar">
+    <span class="toolbarSideGap"></span>
+    <span id="searchButtonWrapper">
+      <button id="searchButton" mat-icon-button (click)="filterZone.toggle()"><mat-icon>menu</mat-icon></button>
+    </span>
+    <span class="toolbarBetweenGap"></span>
+    <h1 id="title">ML Ethics Tool</h1>
+    <span class="toolbarBetweenGap"></span>
+
+    <div id="githubWrapper">
+      <a id="githubButton" href="http://example.com" target="_blank" mat-icon-button>
+        <mat-icon svgIcon="github"></mat-icon>
+      </a>
+      <a href="http://example.com" target="_blank" *ngIf="!mobileQuery.matches" id="githubTextSpan">
+        GitHub
+      </a>
+    </div>
+
+    <span class="toolbarSideGap"></span>
+  </mat-toolbar>
+
+  <mat-sidenav-container id="sidebarAndMainWrapper">
+    <mat-sidenav
+      id="sidebar"
+      [opened]="!mobileQuery.matches"
+      #filterZone [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+    >
+
+      <div id="sidebarContentWrapper">
+        <h1 id="sidebarTitle">Filters</h1>
+        <app-controls></app-controls>
+      </div>
+
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div id="contentFlexer">
+        <div id="content">
+          <app-lister></app-lister>
+        </div>
+        <div id="spacer" *ngIf="!mobileQuery.matches"></div>
+      </div>
+
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <div id="footerDiv">
+    <p id="wantToContribute">Want to contribute? ML Ethics Tool is <a href="">open source</a>.</p>
+  </div>
+</div>
+

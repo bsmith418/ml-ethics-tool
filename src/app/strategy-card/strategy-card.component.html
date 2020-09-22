@@ -1,0 +1,159 @@
+<mat-card class="interventionCard">
+
+  <mat-card-content class="cardContent">
+
+    <!--      ### CORE INFO  ### -->
+    <mat-tab-group mat-align-tabs="start" backgroundColor="undefined">
+      <mat-tab label="Mitigation strategy">
+        <div class="matTabContent">
+
+
+          <h1 class="strategyTitle">{{strategy.name}}</h1>
+          <div *ngIf="strategy.whatItEnables" class="datum">
+            <label>Use this strategy to</label>
+            <p>
+              {{strategy.whatItEnables}}
+            </p>
+          </div>
+
+          <div *ngIf="strategy.requirements.length>0" class="datum">
+            <label>Requirements for use</label>
+            <ul class="simpleList">
+              <li *ngFor="let requirement of strategy.requirements">
+                {{requirement}}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="strategy.procedure" class="datum">
+            <label>Overview of procedure</label>
+            <p>
+              {{strategy.procedure}}
+            </p>
+          </div>
+
+
+          <div *ngIf="strategy.promotedValues.length>0" class="datum">
+            <label>Promoted values</label>
+            <app-enum-list
+              [enumKeys]="strategy.promotedValues"
+              [masterEnum]="PromotedValue"
+              [isChecklist]="true"
+              [filter$]="promotedValuesFilter$"
+            ></app-enum-list>
+          </div>
+
+        </div>
+      </mat-tab>
+
+
+      <!--      ### ADDITIONAL INFO ### -->
+      <mat-tab label="More info">
+
+        <div class="matTabContent">
+          <div *ngIf="strategy.creationYear" class="datum">
+            <label>Creation year of strategy</label>
+            <p>
+              {{strategy.creationYear}}
+            </p>
+          </div>
+
+          <div *ngIf="strategy.additionalNotes" class="datum">
+            <label>Additional notes</label>
+            <p>
+              {{strategy.additionalNotes}}
+            </p>
+          </div>
+
+          <div *ngIf="strategy.academicCitation" class="datum">
+            <label>Academic citation</label>
+            <p>
+              {{strategy.academicCitation}}
+            </p>
+          </div>
+
+          <div *ngIf="strategy.languagesSupported.length >0" class="datum">
+            <label>Languages supported</label>
+            <ul class="simpleList">
+              <li *ngFor="let language of strategy.languagesSupported">
+                {{language}}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="strategy.mlCategories.length>0" class="datum">
+            <label>ML categories</label>
+            <app-enum-list
+              [enumKeys]="strategy.mlCategories"
+              [masterEnum]="MLCategory"
+              [filter$]="mlCategoriesFilter$"
+            ></app-enum-list>
+          </div>
+
+          <div *ngIf="strategy.dataTypes.length>0" class="datum">
+            <label>Training datatypes</label>
+            <app-enum-list
+              [enumKeys]="strategy.dataTypes"
+              [masterEnum]="DataType"
+              [filter$]="dataTypeFilter$"
+            ></app-enum-list>
+          </div>
+
+          <div *ngIf="strategy.devStage.length>0" class="datum">
+            <label>Applicable dev stages</label>
+            <app-enum-list
+              [enumKeys]="strategy.devStage"
+              [masterEnum]="DevStage"
+              [filter$]="devStageFilter$"
+            ></app-enum-list>
+          </div>
+
+          <div *ngIf="strategy.objectives.length>0" class="datum">
+            <label>Supported objectives</label>
+            <app-enum-list
+              [enumKeys]="strategy.objectives"
+              [masterEnum]="Objective"
+              [filter$]="objectivesFilter$"
+            ></app-enum-list>
+          </div>
+
+
+
+          <div *ngIf="strategy.searchTags.length>0" class="datum">
+            <label>Search tags</label>
+            <p>{{strategy.searchTags.join("; ")}}</p>
+          </div>
+
+          <div *ngIf="strategy.otherLinks.length>0" class="datum">
+            <label>Other links</label>
+            <ul class="simpleList">
+              <li *ngFor="let link of strategy.otherLinks">
+                <a target="_blank" rel="noopener noreferrer" href="{{link}}">
+                  {{link}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </mat-tab>
+    </mat-tab-group>
+
+
+
+
+  </mat-card-content>
+
+  <mat-card-actions class="cardActions">
+
+    <div class="strategyPrimaryLinksWrapper">
+      <a *ngIf="strategy.codeURL" href="{{strategy.codeURL}}" target="_blank" rel="noopener noreferrer"><button mat-stroked-button>View Code</button></a>
+      <a *ngIf="strategy.infoURL" href="{{strategy.infoURL}}" target="_blank" rel="noopener noreferrer"><button mat-stroked-button>View Paper</button></a>
+    </div>
+
+    <div class="editButtonsWrapper">
+      <ng-content></ng-content>
+    </div>
+  </mat-card-actions>
+
+</mat-card>

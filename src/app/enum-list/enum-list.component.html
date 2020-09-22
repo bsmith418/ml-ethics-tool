@@ -1,0 +1,18 @@
+
+<mat-chip-list aria-label="chips" multiple="false" #chipList='matChipList' [selectable]="false">
+  <mat-chip *ngFor="let enumChip of enumChips; let i = index"
+            #thisChip="matChip"
+            [color]="enumChip.isSelected ? 'selectedChip' : 'normalChip'"
+            class="featureChip"
+            matTooltip="{{ getTooltip(enumChip.enumKey) }}"
+
+            [selected]="enumChip.isSelected"
+            [class.isSelected]="enumChip.isSelected"
+
+            (click)="chipTip.show(); handleClick(i)"
+            #chipTip="matTooltip"
+             >
+    <mat-icon *ngIf="isChecklist">check</mat-icon>
+    {{enumChip.enumKey | addSpaces}}
+  </mat-chip>
+</mat-chip-list>

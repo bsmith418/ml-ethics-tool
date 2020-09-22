@@ -1,0 +1,49 @@
+<div>
+  <mat-accordion id="controlsAccordian">
+    <mat-expansion-panel *ngFor="let filter of filters; index as i" [expanded]="currentExpansionPanel === i" (opened)="setPanel(i)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{filter.title}}
+        </mat-panel-title>
+        <mat-panel-description *ngIf="filter.isFiltering">
+          (Filtering)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-checkbox-list
+        (checkboxEvent)="handleCheckboxEvent(i, $event)"
+        (filterActivated)="setPanel(i)"
+        [masterEnum]="filter.masterEnum"
+        [filter]="filter"
+        [maxSingleCheck]="true"
+      ></app-checkbox-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<hr>
+
+<div id="searchWrapper">
+  <div id="searchHeader">
+    <h3>Search</h3>
+    <span *ngIf="isSearchFiltering == null" class="searchFilterIndicator">(...)</span>
+    <span *ngIf="isSearchFiltering == true" class="searchFilterIndicator">(Filtering)</span>
+  </div>
+
+  <mat-form-field appearance="outline" id="searchInputField" color="whiteBackground">
+    <mat-label>Enter search terms</mat-label>
+    <input [(ngModel)]="searchValue"
+           (ngModelChange)="handleSearchTyping($event)"
+           #searchInput
+           (keyup.enter)="handleSubmit(searchInput)"
+           matInput placeholder="Ex. privacy" autocomplete="off" maxlength="40" id="searchInput">
+    <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue='';handleSearchTyping('')">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+
+
+<div id="addNewStrategy">
+  <button mat-raised-button (click)="openDialog()">Contribute New Strategy</button>
+</div>

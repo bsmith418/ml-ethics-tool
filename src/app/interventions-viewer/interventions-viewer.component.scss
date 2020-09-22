@@ -1,0 +1,208 @@
+@import '~src/app-vars';
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+:host{
+
+}
+
+#viewportWrapper{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-toolbar.mat-headerfooter{
+  background: $headerFooter;
+  color: $white-ish;
+}
+
+#toolbar{
+  justify-content: center;
+}
+
+.toolbarBetweenGap{
+  background-color: red;
+  flex: 0 1 350px;
+}
+
+
+#githubTextSpan{
+  padding-left: .25em;
+  text-decoration: none;
+  color: $white-ish;
+  //font-size: medium;
+}
+
+// have equal width for side buttons, so title remains centered
+$toolbarButtonWidth: 120px;
+
+#searchButtonWrapper, #githubWrapper{
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: $toolbarButtonWidth;
+}
+
+#searchButton{
+  visibility: hidden;
+}
+
+
+
+.is-mobile #searchButton{
+  visibility: visible;
+}
+
+.is-mobile #toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+#sidebarAndMainWrapper{
+  background-color: $backdrop;
+  // on desktop, make the sidebarAndMainWrapper the scrollable element, allowing the footer to be visible
+  flex: 1; // => flex: 1 1 0 => grow shrink initial => take up all available space, but be amenable to shrinking when it runs out, for the footer
+}
+
+.is-mobile #sidebarAndMainWrapper {
+  //[style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  margin-top: 56px;
+  // on mobile, refuse to shrink. thus, footer gets pushed off screen
+  flex: 1 0 auto; // grow shrink initial => fill up everything, refuse to shrink
+}
+
+#tagline, #wantToContribute{
+  text-align: center;
+}
+
+#contentFlexer{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+#sidebar{
+  background-color: $lighter;
+  max-width: $sidenavMaxwidth;
+  padding: 0em;
+  box-sizing: border-box;
+}
+
+#sidebarContentWrapper{
+  margin: 1em;
+}
+
+
+#sidebarTitle{
+  text-align: center;
+  color: white;
+}
+
+
+.is-mobile #sidebar{
+  width: 75%;
+  // max-width remains $sidenavMaxwidth
+}
+
+#sidebar{
+  background-color: $lighter;
+  max-width: $sidenavMaxwidth;
+  padding: 0em;
+  box-sizing: border-box;
+}
+
+$sidebarPadding: 10px;
+
+#sidebarContentWrapper{
+  margin: $sidebarPadding;
+}
+
+.is-mobile #sidebarContentWrapper{
+  margin: 0;
+  margin-top: $sidebarPadding;
+
+}
+
+
+#sidebarTitle{
+  text-align: center;
+  color: white;
+  padding: 0;
+  margin-bottom: $sidebarPadding;
+}
+
+
+#content{
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: $app-max-width;
+  //background-color: red;
+}
+
+.is-mobile #content{
+  width: auto;
+
+}
+
+// spacer to push strategy cards to center, counterbalancing sidenav
+#spacer{
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: calc(#{$sidenavMaxwidth} - 35px); // error induced by scrollbar == 35px ?
+  width: $sidenavMaxwidth;
+  box-sizing: border-box;
+  //background-color: red;
+}
+
+
+
+#footerDiv{
+  background: $headerFooter;
+  color: white;
+}
+#footerDiv a{
+  color: white;
+}
+
+#titleTextWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //background-color: pink;
+  box-sizing: border-box;
+  //margin-bottom: 1em;
+}
+
+#headerDiv *{
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#titleText{
+  //background: red;
+  margin: 0;
+}
+
+#footerDiv *{
+  margin: 0;
+  padding: 0;
+}
+#footerDiv{
+  height: 2em;
+  //margin-bottom: 2em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mat-elevation(2);
+}
+

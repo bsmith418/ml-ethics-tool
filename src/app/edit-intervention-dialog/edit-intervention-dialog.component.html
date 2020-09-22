@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Edit Strategy</h1>
+
+<div mat-dialog-content>
+  <app-intervention-form [intervention]="strategy" (emittedForm)="onFormChange($event)"></app-intervention-form>
+</div>
+
+<div mat-dialog-actions>
+  <button *ngIf="!showDeletionInput" mat-button (click)="showDeletionInput=true" color="warn">Delete</button>
+
+
+  <div *ngIf="showDeletionInput">
+    <mat-form-field appearance="fill">
+      <mat-label>Why should this be deleted?</mat-label>
+      <input matInput placeholder="Ex. It's a duplicate." autocomplete="off" #deleteReason>
+    </mat-form-field>
+    <button mat-button (click)="suggestDelete(deleteReason.value)" color="warn">Submit Deletion Request</button>
+  </div>
+
+
+
+
+<!--  <div id="actionSpacer"></div>-->
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button #submitButton [disabled]="!isValid" mat-button (click)="onSubmit(submitButton)">Submit</button>
+</div>

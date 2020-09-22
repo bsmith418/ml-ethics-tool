@@ -1,0 +1,169 @@
+
+<form [formGroup]="interventionForm" (ngSubmit)="onSubmit()">
+
+
+  <!--  Template that may be used for checkbox lists -->
+  <!-- TODO: make a proper component out of this -->
+  <ng-template #checkboxTemplate let-masterEnum = "masterEnum" let-arrayName = "arrayName" let-name="name">
+    <div class="checkboxesWrapper">
+      <h2>{{name}}</h2>
+      <ul class="checkboxList">
+        <!--  create checkboxes for all possible features -->
+        <li *ngFor="let enumeration of getEnumKeys(masterEnum)" class="checkboxWrapper">
+          <!--      make starting state of checkboxes reflect the input intervention    -->
+          <mat-checkbox color="primary" [checked]="getArray(arrayName).getRawValue().includes(enumeration)" (change)="onCheckboxChange(arrayName, $event.checked, enumeration)">
+            <div class="checkboxText">{{masterEnum[enumeration]}}</div>
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+
+  <!--  Template that may be used for expandable lists -->
+  <!-- TODO: make a proper component out of this -->
+  <ng-template #expandableListTemplate
+               let-title="title"
+               let-arrayName="arrayName"
+               let-inputName="inputName"
+               let-placeHolder="placeHolder"
+               let-addButtonText="addButtonText"
+  >
+    <div class="expandableListWrapper" formArrayName="{{arrayName}}">
+      <h3>{{title}}</h3>
+      <ul class="extendibleList">
+        <li *ngFor="let item of getArray(arrayName).controls; let i=index">
+          <mat-form-field appearance="fill">
+            <mat-label>{{inputName}}</mat-label>
+            <input matInput [formControlName]="i" placeholder="{{placeHolder}}">
+          </mat-form-field>
+          <button mat-icon-button aria-label="Delete" (click)="deleteFromArray(arrayName,i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-stroked-button (click)="addEmptyToArray(arrayName)">{{addButtonText}}</button>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>The name of the strategy</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <ng-container *ngTemplateOutlet="checkboxTemplate; context:{
+  name: 'This strategy helps you to...',
+  masterEnum: Objective,
+  arrayName: AllEnums.Objective
+  }"></ng-container>
+
+
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Use this strategy if you want to...</mat-label>
+    <textarea matInput formControlName="whatItEnables"
+              placeholder="Ex. Evaluate bias in face detection and recognition on the basis of skin tone"></textarea>
+  </mat-form-field>
+
+  <ng-container *ngTemplateOutlet="expandableListTemplate; context:{
+  title: 'Requirements to implement this strategy',
+  arrayName: 'requirements',
+  inputName: 'Requirement',
+  placeHolder: 'Ex. Labels for objects, gender, or geography',
+  addButtonText: 'Add Requirement'
+  }"></ng-container>
+
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Overview of procedure</mat-label>
+    <textarea matInput formControlName="procedure"
+              placeholder="Ex. Select or synthesize a fairness metric (guidance in the paper) to ..."
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Stategy's creation year</mat-label>
+    <input matInput formControlName="creationYear" placeholder="Ex. 2019">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Academic citation (APA format)</mat-label>
+    <textarea matInput formControlName="academicCitation"
+              placeholder="Ex. Bechavod, Y., & Ligett, K. (2017). Penalizing unfairness ..."
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Strategy code URL</mat-label>
+    <input matInput formControlName="codeURL" placeholder="Ex. https://github.com/nikikilbertus/blind-justice">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Strategy paper/info URL</mat-label>
+    <input matInput formControlName="infoURL" placeholder="Ex. https://arxiv.org/abs/2004.07999">
+  </mat-form-field>
+
+
+  <ng-container *ngTemplateOutlet="expandableListTemplate; context:{
+  title: 'Programming Languages Supported',
+  arrayName: 'languagesSupported',
+  inputName: 'Supported language',
+  placeHolder: 'Ex. Python',
+  addButtonText: 'Add Language'
+  }"></ng-container>
+
+
+  <ng-container *ngTemplateOutlet="checkboxTemplate; context:{
+  name: 'Machine Learning Categories',
+  masterEnum: MLCategory,
+  arrayName: AllEnums.MLCategory
+  }"></ng-container>
+
+
+  <ng-container *ngTemplateOutlet="checkboxTemplate; context:{
+  name: 'Training data types',
+  masterEnum: DataType,
+  arrayName: AllEnums.DataType
+  }"></ng-container>
+
+  <ng-container *ngTemplateOutlet="checkboxTemplate; context:{
+  name: 'Applicable dev stages',
+  masterEnum: DevStage,
+  arrayName: AllEnums.DevStage
+  }"></ng-container>
+
+
+  <ng-container *ngTemplateOutlet="checkboxTemplate; context:{
+  name: 'Promoted values, such as fairness',
+  masterEnum: PromotedValue,
+  arrayName: AllEnums.PromotedValue
+  }"></ng-container>
+
+
+  <ng-container *ngTemplateOutlet="expandableListTemplate; context:{
+  title: 'Search Tags',
+  arrayName: 'searchTags',
+  inputName: 'Search tag',
+  placeHolder: 'Ex. toxicity',
+  addButtonText: 'Add Search Tag'
+  }"></ng-container>
+
+  <mat-form-field appearance="fill" class="fullWidthInput">
+    <mat-label>Additional notes</mat-label>
+    <textarea matInput formControlName="additionalNotes"
+              placeholder="Ex. Also useful for fraud detection, anomaly detection ..."
+    ></textarea>
+  </mat-form-field>
+
+  <ng-container *ngTemplateOutlet="expandableListTemplate; context:{
+  title: 'Additional useful links',
+  arrayName: 'otherLinks',
+  inputName: 'Link',
+  placeHolder: 'Ex. http://opus.bath.ac.uk/55288/',
+  addButtonText: 'Add Link'
+  }"></ng-container>
+
+</form>
+

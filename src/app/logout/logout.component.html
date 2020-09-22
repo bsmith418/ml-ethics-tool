@@ -1,0 +1,21 @@
+<div id="logoutDiv" *ngIf="auth.isLoggedIn$ | async">
+  <span *ngIf="auth.isAdmin$ | async" id="adminLinkWrapper">
+
+    <a routerLink="/admin">
+      <button class="littleButton" mat-icon-button aria-label="Admin">
+        <mat-icon
+          id="adminLink"
+          matBadge="{{modQueueCount$ | async}}"
+          [matBadgeHidden]="(modQueueCount$ | async) == 0"
+          matBadgeColor="warn"
+        >how_to_vote</mat-icon>
+      </button>
+    </a>
+  </span>
+
+  <span>{{auth.email$ | async}}</span>
+  <button class="littleButton" mat-icon-button aria-label="Logout" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+</div>

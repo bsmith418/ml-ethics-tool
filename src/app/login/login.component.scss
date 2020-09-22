@@ -1,0 +1,30 @@
+#loginButtonsWrapper{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#toContributeInfo{
+  text-align: center;
+}
+
+#logoutDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonIcon{
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+.mat-githubBlack {
+  background-color: black;
+  color: #fff;
+}
+
+
+

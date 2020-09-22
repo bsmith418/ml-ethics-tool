@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ml-ethics-tool": {
+      "hosting": {
+        "ml-ethics-tool": [
+          "ml-ethics-tool"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ml-ethics-tool"
+  }
+}

@@ -1,0 +1,37 @@
+
+<app-logout id="logout"></app-logout>
+
+
+<div *ngIf="!(strategies$ | async) ? false : (strategies$ | async)?.length == 0" id="noResultsWrapper">
+  <h3 id="noResultsText">
+    No results. Try adjusting your filters.
+  </h3>
+</div>
+
+<div id="cardsWrapper" *ngIf="!(strategies$ | async) ? false : (strategies$ | async)?.length > 0">
+  <div *ngFor="let strategy of strategies$ | async; trackBy: getStrategyID">
+
+    <div *ngIf="strategy.isPlaceholder" id="spinnerWrapper">
+      <mat-spinner id="spinner">
+      </mat-spinner>
+    </div>
+
+    <app-strategy-card
+      [strategy]="strategy"
+      *ngIf="!strategy.isPlaceholder"
+    >
+      <button mat-icon-button aria-label="Edit" (click)="editStrategy(strategy)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+    </app-strategy-card>
+
+
+
+
+
+  </div>
+</div>
+
+
+

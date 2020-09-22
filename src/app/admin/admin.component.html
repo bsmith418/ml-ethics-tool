@@ -1,0 +1,96 @@
+<a routerLink="/" id="backButton">
+  <button mat-icon-button aria-label="back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</a>
+
+<div id="allComplete" *ngIf="(newCount$|async) + (editCount$|async) + (deleteCount$|async) == 0">
+  <p>
+    Moderation complete! <a routerLink='/'>Return home.</a>
+  </p>
+</div>
+
+<mat-tab-group mat-align-tabs="center" backgroundColor="accent">
+  <mat-tab
+    *ngIf="(newCount$ | async) > 0"
+    label="New ({{ newCount$ | async }})"
+  >
+    <div class="tabContentsWrapper">
+      <app-strategy-card *ngFor="let strategy of newStrategies$ | async" [strategy]="strategy">
+        <button mat-flat-button aria-label="Edit" (click)="rejectNew(strategy)">
+          Reject
+        </button>
+        <button mat-raised-button aria-label="Edit" (click)="approveNew(strategy)">
+          Approve
+        </button>
+      </app-strategy-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab
+    *ngIf="(editCount$ | async) > 0"
+    label="Edit ({{ editCount$ | async }})"
+  >
+
+
+    <div class="tabContentsWrapper">
+      <div *ngFor="let edit of (edits$ | async)" class="editWrapper">
+        <h1 class="editTitle">{{edit.originalName}}</h1>
+
+        <div *ngFor="let property of strategyProperties">
+          <div *ngIf="edit[property] && property!='id'" class="comparisonWrapper">
+            <h2 class="comparisonTitle">{{property}}</h2>
+            <div class="comparisonFlex">
+              <div class="comparedValue">
+                {{edit[property+'ORIGINAL']?.length > 0 ? edit[property+'ORIGINAL'] : '*empty*' }}
+              </div>
+              <div class="becomes">
+                <mat-icon>forward</mat-icon>
+              </div>
+              <div class="comparedValue">
+                {{edit[property]}}
+              </div>
+            </div>
+            <div class="editControlsWrapper">
+              <button mat-icon-button class="editCancelButton" (click)="rejectEdit(edit,property)"><mat-icon>cancel</mat-icon></button>
+              <button mat-icon-button class="editAcceptButton" (click)="acceptEdit(edit,property)"><mat-icon>check_circle</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </mat-tab>
+
+  <mat-tab
+    *ngIf="(deleteCount$ | async) > 0"
+    label="Delete ({{ deleteCount$ | async }})"
+  >
+
+
+    <div class="tabContentsWrapper">
+      <div *ngFor="let strategy of deleteStrategies$ | async" class="deletionWrapper">
+
+        <div class="deletionHeader">
+          <h2 class="deletionTitle">Deletion request</h2>
+          <p>Rationale: {{strategy.deletionRequestReason ? strategy.deletionRequestReason : 'No rationale provided.'}}</p>
+        </div>
+        <app-strategy-card [strategy]="strategy">
+          <button mat-flat-button aria-label="Approve" (click)="acceptDeletion(strategy)" color="warn">
+            Delete strategy
+          </button>
+          <button mat-raised-button aria-label="Reject" (click)="rejectDeletion(strategy)">
+            Keep strategy
+          </button>
+        </app-strategy-card>
+      </div>
+
+    </div>
+
+
+
+  </mat-tab>
+</mat-tab-group>

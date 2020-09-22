@@ -1,0 +1,88 @@
+@import '../../app-vars';
+@import '~@angular/material/theming';
+
+
+:host{
+  display: block;
+  margin-bottom: 1em;
+}
+
+button{
+  background-color: $white-ish !important;
+}
+
+#addNewStrategy{
+  margin-top: 1em;
+  text-align: center;
+}
+
+.filterCategory{
+  border-radius: 10px;
+  background-color: $white-ish;
+  padding: 10px;
+}
+
+#filtersWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+hr{
+  display: block;
+  margin: 15px 0 15px 0;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-top: 1px solid rgba(255, 255, 255, .5);
+  width: 100%
+}
+
+
+#searchWrapper{
+  background-color: $white-ish;
+  padding: 1em;
+  box-sizing: border-box;
+  border-radius: 4px;
+  //margin-top: 20px;
+  @include mat-elevation(2);
+}
+
+#searchWrapper h3{
+  margin-bottom: 0;
+}
+
+#searchHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+// mimic the look of the panel headers' filter indicators
+#searchHeader .searchFilterIndicator{
+  color: rgba(0, 0, 0, 0.54);
+  font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-whiteBackground{
+  margin-bottom: -1em;
+}
+
+#searchInputField{
+  width: 100%;
+}
+
+.mat-form-field-wrapper{
+  padding-bottom: 0 !important;
+  margin-bottom: -1.25em !important;
+}
+
+
+// make titles grab flex space to push descriptions to right
+#controlsAccordian .mat-expansion-panel-header-title{
+  //background-color: red;
+  flex: 1 1 auto;
+}
+#controlsAccordian .mat-expansion-panel-header-description
+{
+  //background-color: green;
+  flex: 0 1 auto;
+}
