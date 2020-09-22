@@ -1,5 +1,5 @@
 # ML Ethics Tool
-[ML Ethics Tool](https://ml-ethics-tool.web.app/) makes it easy to be ethical.
+[ML Ethics Tool](https://ml-ethics-tool.web.app/) makes it easier to be ethical.
 It connects ML devs with strategies, code, and training data that mitigates potential harm.
 
 ## Contributing
