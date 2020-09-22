@@ -11,6 +11,8 @@ export class InterventionsViewerComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
+  githubLink = 'https://github.com/bsmith418/ml-ethics-tool';
+
   // settings courtesy of https://material.angular.io/components/sidenav/examples
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 1202px)');

@@ -13,7 +13,7 @@
       <a id="githubButton" href="http://example.com" target="_blank" mat-icon-button>
         <mat-icon svgIcon="github"></mat-icon>
       </a>
-      <a href="http://example.com" target="_blank" *ngIf="!mobileQuery.matches" id="githubTextSpan">
+      <a href="{{githubLink}}" target="_blank" *ngIf="!mobileQuery.matches" id="githubTextSpan">
         GitHub
       </a>
     </div>
@@ -50,7 +50,7 @@
   </mat-sidenav-container>
 
   <div id="footerDiv">
-    <p id="wantToContribute">Want to contribute? ML Ethics Tool is <a href="">open source</a>.</p>
+    <p id="wantToContribute">Want to contribute? ML Ethics Tool is <a href="{{githubLink}}">open source</a>.</p>
   </div>
 </div>
 
