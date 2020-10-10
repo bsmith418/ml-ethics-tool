@@ -86,6 +86,12 @@ export class ControlsComponent implements OnInit, OnDestroy {
     this.currentExpansionPanel = index;
   }
 
+  clearFilters(): void {
+    this.filters.forEach((aFilter) => {
+      aFilter.subject.next(null);
+    });
+  }
+
   handleSearchTyping(newValue: string): void {
     this.isSearchFiltering = null; // indeterminate state until debounce
     this.searchValue$.next(newValue);
