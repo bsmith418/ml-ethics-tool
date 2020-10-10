@@ -2,15 +2,18 @@
 <div class="checkboxesWrapper">
   <ul class="checkboxList">
     <!--  create checkboxes for all possible features   [checked]="checkedArray[i]"  -->
-    <div *ngFor="let enumeration of getEnumKeys(masterEnum); index as i">
-      <div class="checkboxWrapper" *ngIf="!anyAllKeys.includes(enumeration)" >
-        <mat-checkbox #thisBox color="primary"
-                      [checked] = "(filter.subject | async)?.includes(enumeration)"
-                      (change)="onCheckboxChange(enumeration, thisBox.checked, i)">
-        </mat-checkbox>
-        <div class="checkboxText" (click)="thisBox.toggle(); onCheckboxChange(enumeration, thisBox.checked, i)">{{masterEnum[enumeration]}}</div>
+
+      <div *ngFor="let enumeration of getEnumKeys(masterEnum); index as i">
+        <div class="checkboxWrapper" *ngIf="!anyAllKeys.includes(enumeration)" >
+          <mat-radio-button #thisBox color="primary"
+                        [checked] = "(filter.subject | async)?.includes(enumeration)"
+                        (change)="onCheckboxChange(enumeration, thisBox.checked, i)">
+          </mat-radio-button>
+          <div class="checkboxText" (click)="thisBox.checked = !thisBox.checked; onCheckboxChange(enumeration, thisBox.checked, i)">{{masterEnum[enumeration]}}</div>
+        </div>
       </div>
-    </div>
+
+
 
 
 

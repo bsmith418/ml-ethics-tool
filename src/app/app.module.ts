@@ -55,6 +55,7 @@ import { UidComponent } from './uid/uid.component';
 import { StrategyCardComponent } from './strategy-card/strategy-card.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { AddSpacesPipe } from './add-spaces.pipe';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { AddSpacesPipe } from './add-spaces.pipe';
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatTabsModule,
