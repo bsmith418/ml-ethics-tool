@@ -9,8 +9,14 @@
 </div>
 
 <div id="cardsWrapper" *ngIf="!(strategies$ | async) ? false : (strategies$ | async)?.length > 0">
+<!--  show results count if not loading results and if results count greater than zero -->
+  <div
+    id="resultsCount"
+    *ngIf="(strategies$ | async) ? !(strategies$ | async)[0].isPlaceholder : (strategies$ | async)?.length > 0"
+  >
+    Displaying {{( strategies$ | async)?.length }} results.
+  </div>
   <div *ngFor="let strategy of strategies$ | async; trackBy: getStrategyID">
-
     <div *ngIf="strategy.isPlaceholder" id="spinnerWrapper">
       <mat-spinner id="spinner">
       </mat-spinner>
