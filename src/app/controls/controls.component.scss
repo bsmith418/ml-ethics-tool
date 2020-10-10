@@ -7,6 +7,12 @@
   margin-bottom: 1em;
 }
 
+#sidebarTitle{
+  text-align: center;
+  color: white;
+  margin-bottom: 10px;
+}
+
 button{
   background-color: $white-ish !important;
 }
@@ -16,11 +22,48 @@ button{
   text-align: center;
 }
 
+$borderRadius: 10px;
+
 .filterCategory{
-  border-radius: 10px;
+  border-radius: $borderRadius;
   background-color: $white-ish;
   padding: 10px;
 }
+
+#activeFilters{
+  padding: 10px;
+  color: black;
+  background-color: $white-ish;
+  border-radius: $borderRadius;
+}
+#activeFilters>p{
+  //margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#activeFiltersChips{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //height: 4em;
+  color: $white-ish;
+  //background-color: red;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cardSetWrapper{
+  display: contents;
+}
+
+.mat-chip.mat-activeFilterChip{
+  @include mat-elevation(0);
+  background-color: #EEE;
+  color: black;
+}
+
 
 #filtersWrapper{
   display: flex;

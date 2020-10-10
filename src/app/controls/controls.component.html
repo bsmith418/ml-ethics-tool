@@ -1,3 +1,5 @@
+<h1 id="sidebarTitle">Filters</h1>
+
 <div>
   <mat-accordion id="controlsAccordian">
     <mat-expansion-panel *ngFor="let filter of filters; index as i" [expanded]="currentExpansionPanel === i" (opened)="setPanel(i)">
@@ -42,9 +44,28 @@
   </mat-form-field>
 </div>
 
-<div id="clearAllWrapper">
-  <button mat-raised-button (click)="clearFilters()">Clear filters</button>
+<hr>
+
+<div id="activeFilters">
+  <p>Active filters:</p>
+  <div id="activeFiltersChips">
+  <span *ngFor="let filter of filters" class="cardSetWrapper">
+    <mat-chip
+      *ngFor="let activeFilter of (filter.subject | async) "
+      color="activeFilterChip"
+    >
+      {{ activeFilter | addSpaces }}
+    </mat-chip>
+  </span>
+  </div>
+
+  <div id="clearAllWrapper">
+    <button mat-raised-button (click)="clearFilters()">Clear filters</button>
+  </div>
 </div>
+
+
+<hr>
 
 <div id="addNewStrategy">
   <button mat-raised-button (click)="openDialog()">Contribute new strategy</button>
