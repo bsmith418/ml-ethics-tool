@@ -26,7 +26,8 @@ export class CheckboxListComponent implements OnInit, OnDestroy {
   @Output() filterActivated = new EventEmitter<boolean>();
 
   anyAllKeys: string[];
-  // checkedArray: boolean[];
+
+  selectedRadio: string;
 
   filterSubscription: Subscription;
 
